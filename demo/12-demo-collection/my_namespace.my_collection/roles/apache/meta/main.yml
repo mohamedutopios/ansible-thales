@@ -1,0 +1,5 @@
+galaxy_info:
+  author: Votre Nom
+  description: Rôle pour configurer Apache avec Ansible
+  license: MIT
+  min_ansible_version: 2.9

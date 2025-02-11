@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: "TonNom"
+  description: "Configurer Syslog sur FortiGate"
+  company: "TonEntreprise"
+  license: "MIT"
+  min_ansible_version: "2.9"
+  platforms:
+    - name: "FortiOS"
+      versions:
+        - "7.6.2"
+  galaxy_tags:
+    - fortigate
+    - syslog
+    - logging
+dependencies: []

@@ -1,0 +1,8 @@
+---
+# handlers file for roles/fortigate_static_route
+- name: Save Fortigate Configuration
+  fortinet.fortios.fortios_monitor:
+    vdom: "{{ vdom }}"
+    selector: "save.system.config"
+
+

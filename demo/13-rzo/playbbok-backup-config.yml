@@ -1,0 +1,30 @@
+---
+- name: Sauvegarder la configuration FortiGate
+  hosts: fortigate
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  gather_facts: no
+
+  vars:
+    vdom: "root"
+    ansible_httpapi_use_ssl: no
+    ansible_httpapi_validate_certs: no
+    ansible_httpapi_port: 80
+
+  tasks:
+    - name: Exécuter la commande pour sauvegarder la configuration
+      fortios_monitor:
+        vdom: "{{ vdom }}"
+        selector: "backup.system.config"
+        params:
+          scope: "global"  # Obligatoire : 'global' pour toute la config ou 'vdom' pour une VDOM spécifique
+          destination: "ftp"  # Options: ftp, tftp, sftp, scp, usb
+          password: "fortigatepassword"  # Optionnel si requis pour FTP/SFTP
+          file_format: "cfg"  # Peut être 'cfg', 'tgz' ou autre format
+      register: config_backup
+
+    - name: Sauvegarder la configuration localement
+      copy:
+        content: "{{ config_backup.meta }}"
+        dest: "/home/ubuntu/backups/fortigate_config_backup.conf"

@@ -1,0 +1,14 @@
+- name: Générer un fichier centralisé /etc/hosts
+  hosts: localhost
+  tasks:
+    - name: Générer le fichier /etc/hosts à partir du template
+      template:
+        src: templates/inventory.j2
+        dest: /tmp/centralized_hosts
+      vars:
+        groups: "{{ groups }}"
+        hostvars: "{{ hostvars }}"
+
+    - name: Afficher le contenu du fichier généré
+      debug:
+        msg: "{{ lookup('file', '/tmp/centralized_hosts') }}"

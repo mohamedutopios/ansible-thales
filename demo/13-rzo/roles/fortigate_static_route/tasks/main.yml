@@ -1,0 +1,11 @@
+- name: Configure Static Routes
+  fortinet.fortios.fortios_router_static:
+    vdom: "{{ vdom }}"
+    state: present
+    router_static:
+      seq_num: "{{ item.seq_num }}"
+      dst: "{{ item.destination }}"
+      gateway: "{{ item.gateway }}"
+      device: "{{ item.device }}"
+  loop: "{{ static_routes }}"
+  notify: Save Fortigate Configuration

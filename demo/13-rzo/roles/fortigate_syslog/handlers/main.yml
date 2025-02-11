@@ -1,0 +1,4 @@
+---
+- name: Redémarrer FortiGate Syslog
+  debug:
+    msg: "Si nécessaire, redémarrer FortiGate pour appliquer les changements."

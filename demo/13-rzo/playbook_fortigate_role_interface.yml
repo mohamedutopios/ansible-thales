@@ -1,0 +1,6 @@
+---
+- name: Deploy Fortigate Configuration
+  hosts: localhost
+  gather_facts: no
+  roles:
+    - fortigate_interfaces

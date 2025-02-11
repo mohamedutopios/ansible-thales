@@ -1,0 +1,73 @@
+---
+- name: Déploiement des projets web sur les nœuds
+  hosts: nodes
+  become: true
+
+  vars:
+    common_packages:
+      - curl
+      - vim
+      - git
+      - apache2
+      - unzip
+    apache_service_name: apache2
+    download_dir: /tmp
+    web_root: /var/www/html
+
+    project_urls:
+      node4: "https://mohamed-formation.s3.eu-west-3.amazonaws.com/html5up-paradigm-shift.zip"
+      node5: "https://mohamed-formation.s3.eu-west-3.amazonaws.com/html5up-dimension.zip"
+      node6: "https://mohamed-formation.s3.eu-west-3.amazonaws.com/html5up-aerial.zip"
+
+  tasks:
+    - name: Installer des paquets communs (y compris Apache)
+      apt:
+        name: "{{ common_packages }}"
+        state: present
+        update_cache: yes
+
+    - name: Vérifier si Apache est installé
+      shell: "dpkg -l | grep apache2"
+      ignore_errors: true
+      register: apache_check
+
+    - name: Afficher le résultat de la vérification Apache
+      debug:
+        msg: "{{ apache_check.stdout_lines }}"
+
+    - name: Démarrer Apache avec une commande si nécessaire
+      shell: "apachectl start"
+      ignore_errors: true
+      when: apache_check is defined
+
+    - name: Activer Apache pour qu'il démarre automatiquement
+      shell: "update-rc.d apache2 defaults"
+      ignore_errors: true
+      when: apache_check is defined
+
+    - name: Télécharger le projet web
+      get_url:
+        url: "{{ project_urls[inventory_hostname] }}"
+        dest: "{{ download_dir }}/project.zip"
+
+    - name: Décompresser le projet web
+      unarchive:
+        src: "{{ download_dir }}/project.zip"
+        dest: "{{ web_root }}"
+        remote_src: yes
+
+    - name: Supprimer le fichier ZIP après extraction
+      file:
+        path: "{{ download_dir }}/project.zip"
+        state: absent
+
+    - name: Configurer les permissions sur le dossier web
+      file:
+        path: "{{ web_root }}"
+        owner: www-data
+        group: www-data
+        recurse: yes
+
+    - name: Redémarrer le service Apache
+      shell: "apachectl restart"
+      ignore_errors: true

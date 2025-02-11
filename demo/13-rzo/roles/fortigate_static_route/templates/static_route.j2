@@ -1,0 +1,9 @@
+[
+{% for route in static_routes %}
+  {
+    "dst": "{{ route.destination }}",
+    "gateway": "{{ route.gateway }}",
+    "device": "{{ route.device }}"
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]

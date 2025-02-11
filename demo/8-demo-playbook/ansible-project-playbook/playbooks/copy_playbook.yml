@@ -1,0 +1,13 @@
+---
+- name: Exemple du module copy
+  hosts: nodes
+  become: true
+
+  tasks:
+    - name: Copier un fichier de configuration
+      copy:
+        src: /home/ansible/files/example_config.conf
+        dest: /etc/my_application/config.conf
+        owner: root
+        group: root
+        mode: '0644'

@@ -1,0 +1,8 @@
+---
+# defaults file for fortigate_syslog
+syslog_server: "192.168.189.130"  # IP du serveur Syslog (remplace par ta VM Ansible)
+syslog_port: 514
+syslog_facility: "local7"
+syslog_format: "default"
+syslog_priority: "default"
+syslog_mode: "udp"

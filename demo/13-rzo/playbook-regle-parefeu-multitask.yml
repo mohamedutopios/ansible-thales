@@ -1,0 +1,70 @@
+---
+- name: Gestion des règles de pare-feu FortiGate avec suppression des anciennes règles
+  hosts: fortigate
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  gather_facts: no
+
+  vars:
+    vdom: "root"
+    ansible_httpapi_use_ssl: no
+    ansible_httpapi_validate_certs: no
+    ansible_httpapi_port: 80
+
+  tasks:
+  
+    - name: Configurer une IP Pool pour la NAT
+      fortios_firewall_ippool:
+        vdom: "{{ vdom }}"
+        state: present
+        firewall_ippool:
+          name: "NAT_POOL"
+          startip: "192.168.100.100"
+          endip: "192.168.100.110"
+          type: "overload"
+
+    - name: Appliquer une règle NAT source avec l'IP Pool
+      fortios_firewall_policy:
+        vdom: "{{ vdom }}"
+        state: present
+        firewall_policy:
+          policyid: 30
+          name: "NAT Policy"
+          srcintf:
+            - name: "port2"
+          dstintf:
+            - name: "port3"
+          srcaddr:
+            - name: "all"
+          dstaddr:
+            - name: "all"
+          action: "accept"
+          schedule: "always"
+          service:
+            - name: "ALL"
+          nat: "enable"
+          ippool: "enable"
+          poolname:
+            - { name: "NAT_POOL" }
+
+
+    - name: Bloquer tout autre trafic
+      fortios_firewall_policy:
+        vdom: "{{ vdom }}"
+        state: present
+        firewall_policy:
+          policyid: 32
+          name: "Deny_All"
+          srcintf:
+            - name: "port2"
+          dstintf:
+            - name: "port3"
+          srcaddr:
+            - name: "all"
+          dstaddr:
+            - name: "all"
+          action: "deny"
+          schedule: "always"
+          service:
+            - name: "ALL"

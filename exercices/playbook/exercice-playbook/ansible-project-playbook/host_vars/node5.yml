@@ -1,0 +1,10 @@
+hostname: node5
+disk_partition: /dev/tty
+timezone: Europe/London
+ntp_server: time.google.com
+additional_packages:
+  - nginx
+  - wget
+services_to_enable:
+  - ssh
+  - nginx

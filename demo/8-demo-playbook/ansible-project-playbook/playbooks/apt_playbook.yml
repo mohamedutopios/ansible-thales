@@ -1,0 +1,17 @@
+---
+- name: Exemple du module apt
+  hosts: nodes
+  become: true
+
+  tasks:
+    - name: Mettre à jour la liste des paquets
+      apt:
+        update_cache: yes
+
+    - name: Installer les paquets nécessaires
+      apt:
+        name:
+          - vim
+          - git
+          - curl
+        state: present

@@ -1,0 +1,40 @@
+Vagrant.configure("2") do |config|
+  # Machine Ansible
+  config.vm.define "ansible-inv" do |ansible|
+    ansible.vm.provider "docker" do |docker|
+      docker.image = "ubuntu:20.04"
+      docker.cmd = ["/bin/bash", "-c", "while true; do sleep 30; done"]
+      docker.ports = ["2229:22"] # Mappe le port 22 du conteneur au port 2222 de l'hôte
+    end
+    ansible.vm.hostname = "ansible-inv"
+    ansible.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y ansible openssh-server
+      echo 'root:root' | chpasswd
+      mkdir -p /var/run/sshd
+      sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+      service ssh start
+    SHELL
+  end
+
+  # Configuration des nœuds
+  (4..6).each do |i|
+    config.vm.define "node#{i}-inv" do |node|
+      node.vm.provider "docker" do |docker|
+        docker.image = "ubuntu:20.04"
+        docker.cmd = ["/bin/bash", "-c", "while true; do sleep 30; done"]
+        docker.ports = ["22#{i}2:22"] 
+      end
+      node.vm.hostname = "node#{i}-inv"
+      node.vm.provision "shell", inline: <<-SHELL
+        apt-get update
+        apt-get install -y openssh-server
+        echo 'root:root' | chpasswd
+        mkdir -p /var/run/sshd
+        sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+        sed -i 's/#PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+        service ssh start
+      SHELL
+    end
+  end
+end

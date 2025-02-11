@@ -1,0 +1,13 @@
+---
+- name: Exemple du module file
+  hosts: node4
+  become: true
+
+  tasks:
+    - name: Créer un répertoire pour les logs d'application
+      file:
+        path: /var/log/my_application
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'

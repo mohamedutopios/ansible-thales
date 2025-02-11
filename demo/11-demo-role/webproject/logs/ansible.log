@@ -1,0 +1,95 @@
+2025-01-28 05:39:15,041 p=9737 u=root n=ansible | PLAY [Configuration d'un serveur web] *******************************************************************************
+2025-01-28 05:39:15,053 p=9737 u=root n=ansible | TASK [Gathering Facts] **********************************************************************************************
+2025-01-28 05:39:17,126 p=9737 u=root n=ansible | ok: [node4]
+2025-01-28 05:39:17,190 p=9737 u=root n=ansible | ok: [node5]
+2025-01-28 05:39:17,232 p=9737 u=root n=ansible | TASK [webserver : Installer Nginx] **********************************************************************************
+2025-01-28 05:39:17,270 p=9737 u=root n=ansible | skipping: [node4]
+2025-01-28 05:39:17,292 p=9737 u=root n=ansible | skipping: [node5]
+2025-01-28 05:39:17,313 p=9737 u=root n=ansible | TASK [webserver : Démarrer et activer Nginx] ************************************************************************
+2025-01-28 05:39:18,648 p=9737 u=root n=ansible | fatal: [node5]: FAILED! => {"changed": false, "msg": "Unable to enable service nginx: Failed to enable unit, unit nginx.service does not exist.\n"}
+2025-01-28 05:39:18,718 p=9737 u=root n=ansible | fatal: [node4]: FAILED! => {"changed": false, "msg": "Unable to enable service nginx: Failed to enable unit, unit nginx.service does not exist.\n"}
+2025-01-28 05:39:18,719 p=9737 u=root n=ansible | PLAY RECAP **********************************************************************************************************
+2025-01-28 05:39:18,720 p=9737 u=root n=ansible | node4                      : ok=1    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2025-01-28 05:39:18,720 p=9737 u=root n=ansible | node5                      : ok=1    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2025-01-28 05:41:14,165 p=9962 u=root n=ansible | PLAY [Configuration d'un serveur web] *******************************************************************************
+2025-01-28 05:41:14,177 p=9962 u=root n=ansible | TASK [Gathering Facts] **********************************************************************************************
+2025-01-28 05:41:15,236 p=9962 u=root n=ansible | ok: [node5]
+2025-01-28 05:41:15,318 p=9962 u=root n=ansible | ok: [node4]
+2025-01-28 05:41:15,336 p=9962 u=root n=ansible | TASK [webserver : Installer Nginx] **********************************************************************************
+2025-01-28 05:41:15,763 p=9962 u=root n=ansible | fatal: [node4]: FAILED! => {"ansible_facts": {"pkg_mgr": "apt"}, "changed": false, "msg": ["Could not detect which major revision of yum is in use, which is required to determine module backend.", "You should manually specify use_backend to tell the module whether to use the yum (yum3) or dnf (yum4) backend})"]}
+2025-01-28 05:41:15,789 p=9962 u=root n=ansible | fatal: [node5]: FAILED! => {"ansible_facts": {"pkg_mgr": "apt"}, "changed": false, "msg": ["Could not detect which major revision of yum is in use, which is required to determine module backend.", "You should manually specify use_backend to tell the module whether to use the yum (yum3) or dnf (yum4) backend})"]}
+2025-01-28 05:41:15,792 p=9962 u=root n=ansible | PLAY RECAP **********************************************************************************************************
+2025-01-28 05:41:15,792 p=9962 u=root n=ansible | node4                      : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-01-28 05:41:15,792 p=9962 u=root n=ansible | node5                      : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-01-28 05:41:47,920 p=10105 u=root n=ansible | PLAY [Configuration d'un serveur web] *******************************************************************************
+2025-01-28 05:41:47,932 p=10105 u=root n=ansible | TASK [Gathering Facts] **********************************************************************************************
+2025-01-28 05:41:49,005 p=10105 u=root n=ansible | ok: [node5]
+2025-01-28 05:41:49,085 p=10105 u=root n=ansible | ok: [node4]
+2025-01-28 05:41:49,109 p=10105 u=root n=ansible | TASK [webserver : Installer Nginx] **********************************************************************************
+2025-01-28 05:42:28,138 p=10105 u=root n=ansible | changed: [node5]
+2025-01-28 05:42:35,636 p=10105 u=root n=ansible | changed: [node4]
+2025-01-28 05:42:35,654 p=10105 u=root n=ansible | TASK [webserver : Démarrer et activer Nginx] ************************************************************************
+2025-01-28 05:42:36,665 p=10105 u=root n=ansible | fatal: [node5]: FAILED! => {"changed": false, "msg": "Service is in unknown state", "status": {}}
+2025-01-28 05:42:36,685 p=10105 u=root n=ansible | fatal: [node4]: FAILED! => {"changed": false, "msg": "Service is in unknown state", "status": {}}
+2025-01-28 05:42:36,687 p=10105 u=root n=ansible | PLAY RECAP **********************************************************************************************************
+2025-01-28 05:42:36,688 p=10105 u=root n=ansible | node4                      : ok=2    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-01-28 05:42:36,688 p=10105 u=root n=ansible | node5                      : ok=2    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-01-28 05:45:26,814 p=10426 u=root n=ansible | PLAY [Configuration d'un serveur web] *******************************************************************************
+2025-01-28 05:45:26,826 p=10426 u=root n=ansible | TASK [Gathering Facts] **********************************************************************************************
+2025-01-28 05:45:27,934 p=10426 u=root n=ansible | ok: [node5]
+2025-01-28 05:45:27,952 p=10426 u=root n=ansible | ok: [node4]
+2025-01-28 05:45:27,974 p=10426 u=root n=ansible | TASK [webserver : Installer Nginx] **********************************************************************************
+2025-01-28 05:45:33,829 p=10426 u=root n=ansible | ok: [node5]
+2025-01-28 05:45:33,892 p=10426 u=root n=ansible | ok: [node4]
+2025-01-28 05:45:33,924 p=10426 u=root n=ansible | TASK [webserver : Démarrer Nginx directement] ***********************************************************************
+2025-01-28 05:47:19,863 p=10426 u=root n=ansible |  [ERROR]: User interrupted execution
+
+2025-01-28 05:49:35,389 p=10841 u=root n=ansible | PLAY [Configuration d'un serveur web] *******************************************************************************
+2025-01-28 05:49:35,430 p=10841 u=root n=ansible | TASK [Gathering Facts] **********************************************************************************************
+2025-01-28 05:49:37,951 p=10841 u=root n=ansible | ok: [node5]
+2025-01-28 05:49:38,164 p=10841 u=root n=ansible | ok: [node4]
+2025-01-28 05:49:38,251 p=10841 u=root n=ansible | TASK [webserver : Installer Nginx] **********************************************************************************
+2025-01-28 05:49:47,453 p=10841 u=root n=ansible | ok: [node5]
+2025-01-28 05:49:48,026 p=10841 u=root n=ansible | ok: [node4]
+2025-01-28 05:49:48,067 p=10841 u=root n=ansible | TASK [webserver : Démarrer Nginx en arrière-plan] *******************************************************************
+2025-01-28 05:49:52,037 p=10841 u=root n=ansible | fatal: [node5]: FAILED! => {"changed": true, "cmd": "nginx", "delta": "0:00:02.550802", "end": "2025-01-28 05:49:51.978209", "msg": "non-zero return code", "rc": 1, "start": "2025-01-28 05:49:49.427407", "stderr": "nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)\nnginx: [emerg] bind() to [::]:80 failed (98: Address already in use)\nnginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)\nnginx: [emerg] bind() to [::]:80 failed (98: Address already in use)\nnginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)\nnginx: [emerg] bind() to [::]:80 failed (98: Address already in use)\nnginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)\nnginx: [emerg] bind() to [::]:80 failed (98: Address already in use)\nnginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)\nnginx: [emerg] bind() to [::]:80 failed (98: Address already in use)\nnginx: [emerg] still could not bind()", "stderr_lines": ["nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)", "nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)", "nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)", "nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)", "nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)", "nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)", "nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)", "nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)", "nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)", "nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)", "nginx: [emerg] still could not bind()"], "stdout": "", "stdout_lines": []}
+2025-01-28 05:49:52,070 p=10841 u=root n=ansible | fatal: [node4]: FAILED! => {"changed": true, "cmd": "nginx", "delta": "0:00:02.517615", "end": "2025-01-28 05:49:52.005678", "msg": "non-zero return code", "rc": 1, "start": "2025-01-28 05:49:49.488063", "stderr": "nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)\nnginx: [emerg] bind() to [::]:80 failed (98: Address already in use)\nnginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)\nnginx: [emerg] bind() to [::]:80 failed (98: Address already in use)\nnginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)\nnginx: [emerg] bind() to [::]:80 failed (98: Address already in use)\nnginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)\nnginx: [emerg] bind() to [::]:80 failed (98: Address already in use)\nnginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)\nnginx: [emerg] bind() to [::]:80 failed (98: Address already in use)\nnginx: [emerg] still could not bind()", "stderr_lines": ["nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)", "nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)", "nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)", "nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)", "nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)", "nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)", "nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)", "nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)", "nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)", "nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)", "nginx: [emerg] still could not bind()"], "stdout": "", "stdout_lines": []}
+2025-01-28 05:49:52,076 p=10841 u=root n=ansible | PLAY RECAP **********************************************************************************************************
+2025-01-28 05:49:52,079 p=10841 u=root n=ansible | node4                      : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-01-28 05:49:52,080 p=10841 u=root n=ansible | node5                      : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-01-28 05:55:11,111 p=11417 u=root n=ansible | PLAY [Configuration d'un serveur web] *******************************************************************************
+2025-01-28 05:55:11,123 p=11417 u=root n=ansible | TASK [Gathering Facts] **********************************************************************************************
+2025-01-28 05:55:13,017 p=11417 u=root n=ansible | ok: [node4]
+2025-01-28 05:55:13,216 p=11417 u=root n=ansible | ok: [node5]
+2025-01-28 05:55:13,242 p=11417 u=root n=ansible | TASK [webserver : Installer Nginx] **********************************************************************************
+2025-01-28 05:55:20,278 p=11417 u=root n=ansible | ok: [node4]
+2025-01-28 05:55:20,454 p=11417 u=root n=ansible | ok: [node5]
+2025-01-28 05:55:20,468 p=11417 u=root n=ansible | TASK [webserver : Démarrer Nginx] ***********************************************************************************
+2025-01-28 05:55:20,896 p=11417 u=root n=ansible | changed: [node5]
+2025-01-28 05:55:20,897 p=11417 u=root n=ansible | changed: [node4]
+2025-01-28 05:55:20,911 p=11417 u=root n=ansible | TASK [webserver : Déployer le fichier de configuration Nginx] *******************************************************
+2025-01-28 05:55:21,611 p=11417 u=root n=ansible | changed: [node4]
+2025-01-28 05:55:21,630 p=11417 u=root n=ansible | changed: [node5]
+2025-01-28 05:55:21,669 p=11417 u=root n=ansible | RUNNING HANDLER [webserver : Redémarrer Nginx] **********************************************************************
+2025-01-28 05:55:22,320 p=11417 u=root n=ansible | fatal: [node5]: FAILED! => {"changed": false, "msg": "Service is in unknown state", "status": {}}
+2025-01-28 05:55:22,343 p=11417 u=root n=ansible | fatal: [node4]: FAILED! => {"changed": false, "msg": "Service is in unknown state", "status": {}}
+2025-01-28 05:55:22,343 p=11417 u=root n=ansible | NO MORE HOSTS LEFT **************************************************************************************************
+2025-01-28 05:55:22,345 p=11417 u=root n=ansible | PLAY RECAP **********************************************************************************************************
+2025-01-28 05:55:22,346 p=11417 u=root n=ansible | node4                      : ok=4    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-01-28 05:55:22,346 p=11417 u=root n=ansible | node5                      : ok=4    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-01-28 05:56:59,026 p=11924 u=root n=ansible | PLAY [Configuration d'un serveur web] *******************************************************************************
+2025-01-28 05:56:59,037 p=11924 u=root n=ansible | TASK [Gathering Facts] **********************************************************************************************
+2025-01-28 05:57:00,099 p=11924 u=root n=ansible | ok: [node4]
+2025-01-28 05:57:00,124 p=11924 u=root n=ansible | ok: [node5]
+2025-01-28 05:57:00,149 p=11924 u=root n=ansible | TASK [webserver : Installer Nginx] **********************************************************************************
+2025-01-28 05:57:04,547 p=11924 u=root n=ansible | ok: [node5]
+2025-01-28 05:57:04,614 p=11924 u=root n=ansible | ok: [node4]
+2025-01-28 05:57:04,625 p=11924 u=root n=ansible | TASK [webserver : Démarrer Nginx] ***********************************************************************************
+2025-01-28 05:57:04,996 p=11924 u=root n=ansible | changed: [node4]
+2025-01-28 05:57:05,028 p=11924 u=root n=ansible | changed: [node5]
+2025-01-28 05:57:05,044 p=11924 u=root n=ansible | TASK [webserver : Déployer le fichier de configuration Nginx] *******************************************************
+2025-01-28 05:57:05,829 p=11924 u=root n=ansible | ok: [node4]
+2025-01-28 05:57:05,886 p=11924 u=root n=ansible | ok: [node5]
+2025-01-28 05:57:05,953 p=11924 u=root n=ansible | PLAY RECAP **********************************************************************************************************
+2025-01-28 05:57:05,954 p=11924 u=root n=ansible | node4                      : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-01-28 05:57:05,954 p=11924 u=root n=ansible | node5                      : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   

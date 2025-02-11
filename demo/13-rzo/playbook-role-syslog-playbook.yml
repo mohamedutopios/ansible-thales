@@ -1,0 +1,10 @@
+---
+- name: Configurer Syslog sur FortiGate
+  hosts: fortigate
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  gather_facts: no
+
+  roles:
+    - fortigate_syslog

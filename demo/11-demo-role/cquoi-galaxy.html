@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>cquoi-galaxy.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///Users/mohamedaijjou/Documents/thales/R%3A%5C2.Travail%5C1.Enseignement%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css"><link rel="stylesheet" href="file:///Users/mohamedaijjou/Documents/thales/D%3A%5Crdaros%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css">
+</head>
+
+<body>
+    <h3 id="quest-ce-quansible-galaxy"><strong>Qu'est-ce qu'Ansible Galaxy ?</strong></h3>
+<p><strong>Ansible Galaxy</strong> est une <strong>plateforme communautaire</strong> et un <strong>outil en ligne de commande</strong> qui permet de partager, télécharger, et gérer des <strong>rôles</strong> et <strong>collections</strong> Ansible. Cela facilite la réutilisation et le partage de configurations Ansible dans différents projets.</p>
+<p>Il se compose de deux aspects principaux :</p>
+<ol>
+<li>
+<p><strong>La plateforme Ansible Galaxy</strong> : <a href="https://galaxy.ansible.com">galaxy.ansible.com</a></p>
+<ul>
+<li>Un site web où les développeurs peuvent trouver, télécharger, et partager des rôles ou des collections Ansible créés par d'autres.</li>
+<li>La plateforme héberge des milliers de rôles et collections pour des cas d'utilisation variés (serveurs web, bases de données, cloud, etc.).</li>
+</ul>
+</li>
+<li>
+<p><strong>La commande <code>ansible-galaxy</code></strong> :</p>
+<ul>
+<li>Un outil CLI qui permet de gérer les rôles et collections Ansible localement.</li>
+<li>Avec cette commande, vous pouvez :
+<ul>
+<li>Créer des rôles (<code>init</code>).</li>
+<li>Installer des rôles ou des collections depuis Galaxy ou un autre dépôt (<code>install</code>).</li>
+<li>Lister les rôles/collections installés (<code>list</code>).</li>
+<li>Supprimer des rôles/collections (<code>remove</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="1-la-plateforme-ansible-galaxy"><strong>1. La plateforme Ansible Galaxy</strong></h3>
+<h4 id="fonctionnalit%C3%A9s-de-la-plateforme"><strong>Fonctionnalités de la plateforme</strong></h4>
+<ul>
+<li><strong>Télécharger des rôles ou collections</strong> :
+<ul>
+<li>Vous pouvez rechercher des configurations prêtes à l'emploi pour divers logiciels, infrastructures ou services (par exemple, Nginx, MySQL, Kubernetes, AWS).</li>
+</ul>
+</li>
+<li><strong>Partager vos propres rôles</strong> :
+<ul>
+<li>Les utilisateurs peuvent publier leurs rôles/collections pour les rendre disponibles à la communauté.</li>
+</ul>
+</li>
+<li><strong>Explorer les rôles populaires</strong> :
+<ul>
+<li>Les rôles sont évalués et classés selon leur qualité et leur popularité.</li>
+</ul>
+</li>
+</ul>
+<h4 id="acc%C3%A9der-%C3%A0-ansible-galaxy"><strong>Accéder à Ansible Galaxy :</strong></h4>
+<p>Vous pouvez visiter la plateforme ici : <a href="https://galaxy.ansible.com">https://galaxy.ansible.com</a>.</p>
+<hr>
+<h3 id="2-loutil-cli-ansible-galaxy"><strong>2. L'outil CLI <code>ansible-galaxy</code></strong></h3>
+<h4 id="principales-commandes"><strong>Principales commandes</strong></h4>
+<table>
+<thead>
+<tr>
+<th><strong>Commande</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ansible-galaxy init &lt;role_name&gt;</code></td>
+<td>Crée la structure de base d'un rôle Ansible localement.</td>
+</tr>
+<tr>
+<td><code>ansible-galaxy install &lt;name&gt;</code></td>
+<td>Installe un rôle ou une collection depuis Galaxy ou un autre dépôt.</td>
+</tr>
+<tr>
+<td><code>ansible-galaxy collection install &lt;name&gt;</code></td>
+<td>Installe une collection depuis Galaxy.</td>
+</tr>
+<tr>
+<td><code>ansible-galaxy list</code></td>
+<td>Liste les rôles ou collections installés localement.</td>
+</tr>
+<tr>
+<td><code>ansible-galaxy remove &lt;name&gt;</code></td>
+<td>Supprime un rôle ou une collection.</td>
+</tr>
+<tr>
+<td><code>ansible-galaxy collection list</code></td>
+<td>Affiche toutes les collections disponibles sur votre machine.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="3-r%C3%B4les-dans-ansible-galaxy"><strong>3. Rôles dans Ansible Galaxy</strong></h3>
+<p>Un <strong>rôle</strong> dans Ansible Galaxy est une unité réutilisable contenant tout ce qui est nécessaire pour configurer une application ou un service spécifique. Les rôles peuvent inclure :</p>
+<ul>
+<li>Des tâches (<code>tasks/</code>)</li>
+<li>Des variables (<code>vars/</code> et <code>defaults/</code>)</li>
+<li>Des fichiers statiques (<code>files/</code>)</li>
+<li>Des modèles (<code>templates/</code>)</li>
+<li>Des handlers (<code>handlers/</code>)</li>
+</ul>
+<h4 id="exemple-de-r%C3%B4le-t%C3%A9l%C3%A9charg%C3%A9-depuis-galaxy"><strong>Exemple de rôle téléchargé depuis Galaxy :</strong></h4>
+<p>Si vous cherchez un rôle pour installer <strong>Nginx</strong>, vous pouvez utiliser la commande suivante :</p>
+<pre class="hljs"><code><div>ansible-galaxy install geerlingguy.nginx
+</div></code></pre>
+<p>Cela installe le rôle de la communauté (par exemple, <code>geerlingguy.nginx</code>) dans le répertoire par défaut des rôles (<code>~/.ansible/roles</code>).</p>
+<h4 id="utilisation-du-r%C3%B4le-dans-un-playbook"><strong>Utilisation du rôle dans un playbook :</strong></h4>
+<p>Une fois installé, vous pouvez utiliser le rôle comme suit dans un playbook :</p>
+<pre class="hljs"><code><div><span class="hljs-meta">---</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Installer</span> <span class="hljs-string">et</span> <span class="hljs-string">configurer</span> <span class="hljs-string">Nginx</span>
+  <span class="hljs-attr">hosts:</span> <span class="hljs-string">webservers</span>
+  <span class="hljs-attr">roles:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">geerlingguy.nginx</span>
+</div></code></pre>
+<hr>
+<h3 id="4-collections-dans-ansible-galaxy"><strong>4. Collections dans Ansible Galaxy</strong></h3>
+<p>Les <strong>collections</strong> sont une évolution des rôles. Elles regroupent :</p>
+<ul>
+<li>Des rôles.</li>
+<li>Des modules Ansible supplémentaires.</li>
+<li>Des plugins, comme des filtres ou des modules de connexion.</li>
+<li>De la documentation.</li>
+</ul>
+<h4 id="t%C3%A9l%C3%A9charger-une-collection"><strong>Télécharger une collection :</strong></h4>
+<p>Par exemple, pour télécharger la collection <code>community.general</code>, exécutez :</p>
+<pre class="hljs"><code><div>ansible-galaxy collection install community.general
+</div></code></pre>
+<p>Cela installe la collection dans le répertoire par défaut (<code>~/.ansible/collections</code>).</p>
+<h4 id="utilisation-dun-module-ou-r%C3%B4le-dune-collection"><strong>Utilisation d'un module ou rôle d'une collection :</strong></h4>
+<p>Une fois installée, vous pouvez utiliser les ressources d'une collection dans un playbook.</p>
+<p>Exemple avec un module de la collection <code>community.general</code> :</p>
+<pre class="hljs"><code><div><span class="hljs-meta">---</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Utilisation</span> <span class="hljs-string">d'un</span> <span class="hljs-string">module</span> <span class="hljs-string">depuis</span> <span class="hljs-string">une</span> <span class="hljs-string">collection</span>
+  <span class="hljs-attr">hosts:</span> <span class="hljs-string">localhost</span>
+  <span class="hljs-attr">tasks:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Exécuter</span> <span class="hljs-string">une</span> <span class="hljs-string">commande</span> <span class="hljs-string">avec</span> <span class="hljs-string">community.general</span>
+      <span class="hljs-attr">community.general.shell:</span>
+        <span class="hljs-attr">cmd:</span> <span class="hljs-string">echo</span> <span class="hljs-string">"Hello from Ansible Galaxy"</span>
+</div></code></pre>
+<hr>
+<h3 id="5-options-de-configuration-pour-ansible-galaxy"><strong>5. Options de configuration pour <code>ansible-galaxy</code></strong></h3>
+<p>Vous pouvez personnaliser certains comportements de <code>ansible-galaxy</code> via le fichier <code>ansible.cfg</code>. Par exemple :</p>
+<h4 id="chemin-pour-les-r%C3%B4les">Chemin pour les rôles :</h4>
+<pre class="hljs"><code><div><span class="hljs-section">[defaults]</span>
+<span class="hljs-attr">roles_path</span> = ./roles:/etc/ansible/roles
+</div></code></pre>
+<h4 id="chemin-pour-les-collections">Chemin pour les collections :</h4>
+<pre class="hljs"><code><div><span class="hljs-section">[defaults]</span>
+<span class="hljs-attr">collections_paths</span> = ./collections:/etc/ansible/collections
+</div></code></pre>
+<hr>
+<h3 id="6-travailler-sans-internet-environnements-isol%C3%A9s"><strong>6. Travailler sans Internet (environnements isolés)</strong></h3>
+<p>Si vous travaillez dans un environnement sans Internet, vous pouvez préparer les rôles et collections sur une machine connectée, puis les transférer.</p>
+<h4 id="t%C3%A9l%C3%A9charger-des-r%C3%B4les">Télécharger des rôles :</h4>
+<p>Sur une machine connectée, téléchargez un rôle avec :</p>
+<pre class="hljs"><code><div>ansible-galaxy install &lt;role_name&gt; -p ./roles
+</div></code></pre>
+<p>Archivez ensuite le répertoire <code>roles</code> :</p>
+<pre class="hljs"><code><div>tar -czf roles.tar.gz ./roles
+</div></code></pre>
+<h4 id="t%C3%A9l%C3%A9charger-des-collections">Télécharger des collections :</h4>
+<p>Pour les collections :</p>
+<pre class="hljs"><code><div>ansible-galaxy collection install &lt;collection_name&gt; -p ./collections
+</div></code></pre>
+<p>Archivez le répertoire <code>collections</code> :</p>
+<pre class="hljs"><code><div>tar -czf collections.tar.gz ./collections
+</div></code></pre>
+<p>Transférez ces archives dans votre environnement isolé, décompressez-les, et configurez les chemins dans <code>ansible.cfg</code>.</p>
+<hr>
+<h3 id="7-avantages-dansible-galaxy"><strong>7. Avantages d'Ansible Galaxy</strong></h3>
+<ul>
+<li><strong>Réutilisation :</strong> Pas besoin de recréer des rôles pour des tâches courantes (ex. : installation de Nginx, gestion d'AWS).</li>
+<li><strong>Communauté :</strong> Accès à des configurations éprouvées créées par des experts.</li>
+<li><strong>Standardisation :</strong> Les rôles téléchargés suivent une structure standardisée.</li>
+<li><strong>Gain de temps :</strong> Installation rapide de rôles et de collections préconçus.</li>
+</ul>
+<hr>
+
+</body>
+
+</html>

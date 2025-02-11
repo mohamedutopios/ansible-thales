@@ -1,0 +1,6 @@
+- name: Restart IPsec VPN
+  fortinet.fortios.fortios_monitor:
+    vdom: "{{ vdom }}"
+    selector: "tunnel_down.vpn.ipsec"
+    params:
+      tunnel: "{{ vpn_phase1.name }}"

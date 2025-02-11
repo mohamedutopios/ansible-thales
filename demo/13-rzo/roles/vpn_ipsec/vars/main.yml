@@ -1,0 +1,20 @@
+---
+# vars file for roles/vpn_ipsec
+vdom: "root"
+ansible_httpapi_use_ssl: no
+ansible_httpapi_validate_certs: no
+ansible_httpapi_port: 80
+
+vpn_phase1:
+  name: "vpn-to-branch"
+  interface: "port1"
+  remote_gateway: "203.0.113.1"
+  psk: "strongpassword"
+  proposal: "aes256-sha256"
+
+vpn_phase2:
+  name: "vpn-to-branch-phase2"
+  phase1name: "vpn-to-branch"
+  src_subnet: "192.168.10.0/24"
+  dst_subnet: "192.168.20.0/24"
+  proposal: "aes256-sha256"

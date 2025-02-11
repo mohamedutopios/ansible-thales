@@ -1,0 +1,16 @@
+---
+# vars file for roles/fortigate_static_route
+vdom: "root"
+ansible_httpapi_use_ssl: no
+ansible_httpapi_validate_certs: no
+ansible_httpapi_port: 80
+
+static_routes:
+  - seq_num: 1
+    destination: "0.0.0.0/0"
+    gateway: "192.168.1.254"
+    device: "port2"
+  - seq_num: 2
+    destination: "10.0.0.0/24"
+    gateway: "192.168.1.6"
+    device: "port2"

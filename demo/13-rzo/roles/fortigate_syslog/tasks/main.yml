@@ -1,0 +1,14 @@
+---
+- name: Activer et configurer Syslog sur FortiGate
+  fortinet.fortios.fortios_log_syslogd_setting:
+    vdom: "root"
+    log_syslogd_setting:
+      status: "enable"
+      server: "{{ syslog_server }}"
+      port: "{{ syslog_port }}"
+      facility: "{{ syslog_facility }}"
+      format: "{{ syslog_format }}"
+      priority: "{{ syslog_priority }}"
+      mode: "{{ syslog_mode }}"
+  notify: Redémarrer FortiGate Syslog
+

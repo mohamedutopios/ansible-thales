@@ -1,0 +1,58 @@
+- name: Déployer et configurer Nginx
+  hosts: nodes
+  become: yes
+
+  vars:
+    server_name: "example.com"
+    document_root: "/var/www/html"
+    access_log: "/var/log/nginx/access.log"
+    error_log: "/var/log/nginx/error.log"
+    enable_proxy: true
+    proxy_backend: "127.0.0.1:5000"
+    static_files: "/var/www/static"
+
+  tasks:
+    - name: Mettre à jour les paquets
+      apt:
+        update_cache: yes
+
+    - name: Arrêter Apache2 si actif
+      service:
+        name: apache2
+        state: stopped
+      ignore_errors: true
+
+    - name: Désactiver Apache2 pour éviter son démarrage
+      systemd:
+        name: apache2
+        enabled: no
+
+    - name: Installer Nginx
+      apt:
+        name: nginx
+        state: present
+      notify: Redémarrer Nginx
+
+    - name: Créer le répertoire pour les fichiers statiques
+      file:
+        path: "{{ static_files }}"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+
+    - name: Déployer la configuration Nginx
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+      notify: Redémarrer Nginx
+
+    - name: Tester la configuration Nginx
+      command: nginx -t
+      register: nginx_test_result
+      failed_when: nginx_test_result.rc != 0
+      changed_when: false
+
+  handlers:
+    - name: Redémarrer Nginx
+      command: service nginx restart

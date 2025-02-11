@@ -1,0 +1,4 @@
+- name: Tester la collection Apache
+  hosts: all
+  roles:
+    - my_namespace.my_collection.apache

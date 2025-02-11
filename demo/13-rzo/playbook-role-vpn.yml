@@ -1,0 +1,11 @@
+- name: Configure Fortigate IPsec VPN
+  hosts: fortigate
+  gather_facts: no
+  connection: httpapi
+  vars:
+    ansible_network_os: fortinet.fortios.fortios
+    ansible_httpapi_use_ssl: "{{ ansible_httpapi_use_ssl }}"
+    ansible_httpapi_validate_certs: "{{ ansible_httpapi_validate_certs }}"
+    ansible_httpapi_port: "{{ ansible_httpapi_port }}"
+  roles:
+    - vpn_ipsec

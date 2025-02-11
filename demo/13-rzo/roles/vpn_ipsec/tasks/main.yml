@@ -1,0 +1,25 @@
+---
+# tasks file for roles/vpn_ipsec
+- name: Configure IPsec VPN Phase 1
+  fortinet.fortios.fortios_vpn_ipsec_phase1_interface:
+    vdom: "{{ vdom }}"
+    state: present
+    vpn_ipsec_phase1_interface:
+      name: "{{ vpn_phase1.name }}"
+      interface: "{{ vpn_phase1.interface }}"
+      remote_gw: "{{ vpn_phase1.remote_gateway }}"
+      psksecret: "{{ vpn_phase1.psk }}"
+      proposal: "{{ vpn_phase1.proposal }}"
+  notify: Restart IPsec VPN
+
+- name: Configure IPsec VPN Phase 2
+  fortinet.fortios.fortios_vpn_ipsec_phase2_interface:
+    vdom: "{{ vdom }}"
+    state: present
+    vpn_ipsec_phase2_interface:
+      name: "{{ vpn_phase2.name }}"
+      phase1name: "{{ vpn_phase2.phase1name }}"
+      src_subnet: "{{ vpn_phase2.src_subnet }}"
+      dst_subnet: "{{ vpn_phase2.dst_subnet }}"
+      proposal: "{{ vpn_phase2.proposal }}"
+  notify: Restart IPsec VPN

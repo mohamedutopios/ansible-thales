@@ -1,0 +1,10 @@
+hostname: node4
+disk_partition: /dev/tty
+timezone: Europe/Paris
+ntp_server: pool.ntp.org
+additional_packages:
+  - git
+  - tree
+services_to_enable:
+  - ssh
+  - ntp

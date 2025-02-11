@@ -1,0 +1,28 @@
+---
+- name: Configurer les interfaces réseau de FortiGate
+  hosts: fortigate
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  gather_facts: no
+
+  vars:
+    vdom: "root"
+    ansible_httpapi_use_ssl: no
+    ansible_httpapi_validate_certs: no
+    ansible_httpapi_port: 80
+
+  tasks:
+    - name: Configurer l'interface port2
+      fortios_system_interface:
+        vdom: "{{ vdom }}"
+        state: present
+        system_interface:
+          name: "port2"
+          mode: "static"
+          ip: "192.168.10.1 255.255.255.0"
+          allowaccess: 
+            - ping 
+            - ssh 
+            - https 
+            - http

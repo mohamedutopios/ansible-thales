@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ansible.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///Users/mohamedaijjou/Documents/thales/R%3A%5C2.Travail%5C1.Enseignement%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css"><link rel="stylesheet" href="file:///Users/mohamedaijjou/Documents/thales/D%3A%5Crdaros%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css">
+</head>
+
+<body>
+    <p>Le fichier <code>ansible.cfg</code> est un fichier de configuration central d'Ansible qui permet de personnaliser le comportement global d'Ansible, y compris la gestion des connexions, des journaux, des modules, des rôles, et bien d'autres aspects. Il peut être utilisé pour adapter Ansible à vos besoins spécifiques et se trouve généralement dans un des emplacements suivants, en fonction de l'ordre de priorité :</p>
+<ol>
+<li><strong>Dans le répertoire courant (local au projet)</strong> : Si un fichier <code>ansible.cfg</code> est présent dans le répertoire courant, il sera utilisé.</li>
+<li><strong>Dans le répertoire utilisateur</strong> : <code>~/.ansible.cfg</code>.</li>
+<li><strong>Dans <code>/etc/ansible/ansible.cfg</code></strong> : Le fichier de configuration global installé avec Ansible.</li>
+</ol>
+<hr>
+<h2 id="structure-et-sections-de-ansiblecfg">Structure et Sections de <code>ansible.cfg</code></h2>
+<p>Le fichier est divisé en plusieurs sections, chacune définissant des paramètres spécifiques. Voici les sections principales et ce qu'elles peuvent contenir :</p>
+<h3 id="1-defaults">1. <code>[defaults]</code></h3>
+<p>Cette section contient les paramètres par défaut pour la plupart des opérations Ansible.</p>
+<p><strong>Exemples de paramètres :</strong></p>
+<ul>
+<li><strong><code>inventory</code></strong> : Chemin vers le fichier ou script d'inventaire à utiliser.<pre class="hljs"><code><div><span class="hljs-attr">inventory</span> = ./inventory
+</div></code></pre>
+</li>
+<li><strong><code>remote_user</code></strong> : Utilisateur distant par défaut pour SSH.<pre class="hljs"><code><div><span class="hljs-attr">remote_user</span> = ansible
+</div></code></pre>
+</li>
+<li><strong><code>timeout</code></strong> : Durée maximale en secondes pour établir une connexion.<pre class="hljs"><code><div><span class="hljs-attr">timeout</span> = <span class="hljs-number">30</span>
+</div></code></pre>
+</li>
+<li><strong><code>forks</code></strong> : Nombre maximum de tâches simultanées.<pre class="hljs"><code><div><span class="hljs-attr">forks</span> = <span class="hljs-number">5</span>
+</div></code></pre>
+</li>
+<li><strong><code>retry_files_enabled</code></strong> : Activer ou désactiver la génération de fichiers <code>.retry</code>.<pre class="hljs"><code><div><span class="hljs-attr">retry_files_enabled</span> = <span class="hljs-literal">False</span>
+</div></code></pre>
+</li>
+<li><strong><code>host_key_checking</code></strong> : Désactiver la vérification de clé SSH.<pre class="hljs"><code><div><span class="hljs-attr">host_key_checking</span> = <span class="hljs-literal">False</span>
+</div></code></pre>
+</li>
+<li><strong><code>stdout_callback</code></strong> : Définir le format de sortie des résultats (par exemple, <code>default</code>, <code>yaml</code>, <code>json</code>).<pre class="hljs"><code><div><span class="hljs-attr">stdout_callback</span> = yaml
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="2-privilegeescalation">2. <code>[privilege_escalation]</code></h3>
+<p>Cette section configure les paramètres pour l'élévation de privilèges (sudo).</p>
+<p><strong>Exemples de paramètres :</strong></p>
+<ul>
+<li><strong><code>become</code></strong> : Activer ou désactiver <code>become</code> par défaut.<pre class="hljs"><code><div><span class="hljs-attr">become</span> = <span class="hljs-literal">True</span>
+</div></code></pre>
+</li>
+<li><strong><code>become_user</code></strong> : Utilisateur cible pour l'élévation de privilèges.<pre class="hljs"><code><div><span class="hljs-attr">become_user</span> = root
+</div></code></pre>
+</li>
+<li><strong><code>become_method</code></strong> : Méthode pour élever les privilèges (par exemple, <code>sudo</code>, <code>su</code>, <code>pbrun</code>, etc.).<pre class="hljs"><code><div><span class="hljs-attr">become_method</span> = sudo
+</div></code></pre>
+</li>
+<li><strong><code>become_ask_pass</code></strong> : Demander le mot de passe pour l'élévation.<pre class="hljs"><code><div><span class="hljs-attr">become_ask_pass</span> = <span class="hljs-literal">False</span>
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="3-sshconnection">3. <code>[ssh_connection]</code></h3>
+<p>Cette section contrôle les paramètres pour les connexions SSH.</p>
+<p><strong>Exemples de paramètres :</strong></p>
+<ul>
+<li><strong><code>ssh_args</code></strong> : Arguments personnalisés pour SSH.<pre class="hljs"><code><div><span class="hljs-attr">ssh_args</span> = -o ControlMaster=auto -o ControlPersist=<span class="hljs-number">60</span>s
+</div></code></pre>
+</li>
+<li><strong><code>pipelining</code></strong> : Activer le pipelining SSH pour améliorer les performances.<pre class="hljs"><code><div><span class="hljs-attr">pipelining</span> = <span class="hljs-literal">True</span>
+</div></code></pre>
+</li>
+<li><strong><code>control_path</code></strong> : Chemin pour le fichier de contrôle SSH.<pre class="hljs"><code><div><span class="hljs-attr">control_path</span> = %(directory)s/%%h-%%r
+</div></code></pre>
+</li>
+<li><strong><code>scp_if_ssh</code></strong> : Utiliser <code>scp</code> si <code>sftp</code> n'est pas disponible.<pre class="hljs"><code><div><span class="hljs-attr">scp_if_ssh</span> = <span class="hljs-literal">True</span>
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="4-inventory">4. <code>[inventory]</code></h3>
+<p>Cette section configure les paramètres liés aux inventaires.</p>
+<p><strong>Exemples de paramètres :</strong></p>
+<ul>
+<li><strong><code>enable_plugins</code></strong> : Activer les plugins d'inventaire spécifiques.<pre class="hljs"><code><div><span class="hljs-attr">enable_plugins</span> = host_list, script, yaml, ini, auto
+</div></code></pre>
+</li>
+<li><strong><code>cache</code></strong> : Activer la mise en cache des inventaires.<pre class="hljs"><code><div><span class="hljs-attr">cache</span> = <span class="hljs-literal">True</span>
+</div></code></pre>
+</li>
+<li><strong><code>cache_plugin</code></strong> : Définir le plugin de cache (par exemple, JSON, Redis).<pre class="hljs"><code><div><span class="hljs-attr">cache_plugin</span> = jsonfile
+</div></code></pre>
+</li>
+<li><strong><code>cache_timeout</code></strong> : Durée en secondes pour invalider le cache.<pre class="hljs"><code><div><span class="hljs-attr">cache_timeout</span> = <span class="hljs-number">300</span>
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="5-logging">5. <code>[logging]</code></h3>
+<p>Cette section gère les options de journalisation.</p>
+<p><strong>Exemples de paramètres :</strong></p>
+<ul>
+<li><strong><code>log_path</code></strong> : Chemin pour le fichier de journalisation.<pre class="hljs"><code><div><span class="hljs-attr">log_path</span> = /var/log/ansible.log
+</div></code></pre>
+</li>
+<li><strong><code>log_level</code></strong> : Niveau de journalisation (<code>DEBUG</code>, <code>INFO</code>, <code>WARNING</code>, <code>ERROR</code>).<pre class="hljs"><code><div><span class="hljs-attr">log_level</span> = DEBUG
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="6-galaxy">6. <code>[galaxy]</code></h3>
+<p>Cette section configure les options liées à Ansible Galaxy.</p>
+<p><strong>Exemples de paramètres :</strong></p>
+<ul>
+<li><strong><code>server_list</code></strong> : Liste des serveurs Galaxy à utiliser.<pre class="hljs"><code><div><span class="hljs-attr">server_list</span> = galaxy
+</div></code></pre>
+</li>
+<li><strong><code>role_skeleton</code></strong> : Chemin vers un squelette de rôle personnalisé.<pre class="hljs"><code><div><span class="hljs-attr">role_skeleton</span> = /path/to/custom_skeleton
+</div></code></pre>
+</li>
+<li><strong><code>role_skeleton_ignore</code></strong> : Liste des fichiers/dossiers à ignorer lors de la création d’un rôle.<pre class="hljs"><code><div><span class="hljs-attr">role_skeleton_ignore</span> = .git,.github
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="7-callback">7. <code>[callback]</code></h3>
+<p>Configure les options pour les plugins de callback.</p>
+<p><strong>Exemples de paramètres :</strong></p>
+<ul>
+<li><strong><code>enabled</code></strong> : Activer les plugins de callback spécifiques.<pre class="hljs"><code><div><span class="hljs-attr">enabled</span> = timer, profile_tasks
+</div></code></pre>
+</li>
+<li><strong><code>whitelist</code></strong> : Liste blanche des plugins de callback autorisés.<pre class="hljs"><code><div><span class="hljs-attr">whitelist</span> = yaml, json, minimal
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="8-retry">8. <code>[retry]</code></h3>
+<p>Configure les paramètres pour les fichiers <code>.retry</code>.</p>
+<p><strong>Exemples de paramètres :</strong></p>
+<ul>
+<li><strong><code>retry_files_enabled</code></strong> : Activer ou désactiver la création des fichiers de reprise.<pre class="hljs"><code><div><span class="hljs-attr">retry_files_enabled</span> = <span class="hljs-literal">False</span>
+</div></code></pre>
+</li>
+<li><strong><code>retry_files_save_path</code></strong> : Chemin pour enregistrer les fichiers <code>.retry</code>.<pre class="hljs"><code><div><span class="hljs-attr">retry_files_save_path</span> = /tmp/ansible-retries
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="9-jinja2">9. <code>[jinja2]</code></h3>
+<p>Personnalise les paramètres liés au moteur de templates Jinja2.</p>
+<p><strong>Exemples de paramètres :</strong></p>
+<ul>
+<li><strong><code>extensions</code></strong> : Extensions supplémentaires pour Jinja2.<pre class="hljs"><code><div><span class="hljs-attr">extensions</span> = jinja2.ext.do,jinja2.ext.loopcontrols
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="priorit%C3%A9-et-surcharge-des-param%C3%A8tres">Priorité et Surcharge des Paramètres</h2>
+<p>Les paramètres dans <code>ansible.cfg</code> suivent une logique de priorité :</p>
+<ol>
+<li>Variables définies en ligne de commande.</li>
+<li>Variables dans un fichier <code>ansible.cfg</code> local au projet.</li>
+<li>Variables dans <code>~/.ansible.cfg</code> (configuration utilisateur).</li>
+<li>Variables dans <code>/etc/ansible/ansible.cfg</code> (configuration globale).</li>
+</ol>
+<hr>
+<h2 id="bonnes-pratiques-pour-ansiblecfg">Bonnes Pratiques pour <code>ansible.cfg</code></h2>
+<ol>
+<li><strong>Versionner <code>ansible.cfg</code></strong> : Ajoutez ce fichier dans votre système de contrôle de version pour garantir la cohérence entre les membres de l’équipe.</li>
+<li><strong>Centraliser les Paramètres Globaux</strong> : Gardez les configurations globales dans <code>/etc/ansible/ansible.cfg</code> et utilisez des fichiers locaux pour les projets spécifiques.</li>
+<li><strong>Désactiver les Fichiers <code>.retry</code></strong> : Si vous n’avez pas besoin de reprendre des tâches échouées, désactivez ces fichiers pour éviter le désordre.</li>
+<li><strong>Activer le Pipelining</strong> : Cela améliore les performances, en particulier sur les connexions SSH.</li>
+<li><strong>Utiliser un Fichier de Journalisation</strong> : Activez la journalisation pour déboguer les erreurs et surveiller les exécutions.</li>
+<li><strong>S'assurer de la Sécurité</strong> : Limitez les permissions sur <code>ansible.cfg</code> si des informations sensibles y sont stockées.</li>
+</ol>
+<hr>
+<h2 id="exemple-complet-dun-ansiblecfg">Exemple Complet d’un <code>ansible.cfg</code></h2>
+<pre class="hljs"><code><div><span class="hljs-section">[defaults]</span>
+<span class="hljs-attr">inventory</span> = ./inventory
+<span class="hljs-attr">remote_user</span> = ansible
+<span class="hljs-attr">timeout</span> = <span class="hljs-number">30</span>
+<span class="hljs-attr">forks</span> = <span class="hljs-number">10</span>
+<span class="hljs-attr">host_key_checking</span> = <span class="hljs-literal">False</span>
+<span class="hljs-attr">retry_files_enabled</span> = <span class="hljs-literal">False</span>
+<span class="hljs-attr">stdout_callback</span> = yaml
+<span class="hljs-attr">log_path</span> = /var/log/ansible.log
+
+<span class="hljs-section">[privilege_escalation]</span>
+<span class="hljs-attr">become</span> = <span class="hljs-literal">True</span>
+<span class="hljs-attr">become_user</span> = root
+<span class="hljs-attr">become_method</span> = sudo
+<span class="hljs-attr">become_ask_pass</span> = <span class="hljs-literal">False</span>
+
+<span class="hljs-section">[ssh_connection]</span>
+<span class="hljs-attr">ssh_args</span> = -o ControlMaster=auto -o ControlPersist=<span class="hljs-number">60</span>s
+<span class="hljs-attr">pipelining</span> = <span class="hljs-literal">True</span>
+<span class="hljs-attr">control_path</span> = %(directory)s/%%h-%%r
+<span class="hljs-attr">scp_if_ssh</span> = <span class="hljs-literal">True</span>
+
+<span class="hljs-section">[galaxy]</span>
+<span class="hljs-attr">server_list</span> = galaxy
+<span class="hljs-attr">role_skeleton</span> = /path/to/skeleton
+
+<span class="hljs-section">[logging]</span>
+<span class="hljs-attr">log_path</span> = /var/log/ansible.log
+<span class="hljs-attr">log_level</span> = DEBUG
+</div></code></pre>
+
+</body>
+
+</html>

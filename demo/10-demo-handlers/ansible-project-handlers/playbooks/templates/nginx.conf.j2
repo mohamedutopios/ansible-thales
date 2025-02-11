@@ -1,0 +1,56 @@
+# Fichier de configuration Nginx généré par Ansible
+
+# Fichier généré par Ansible
+# Généré le {{ ansible_date_time.date }} à {{ ansible_date_time.time }}
+
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    keepalive_timeout 65;
+    types_hash_max_size 2048;
+
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        server_name {{ server_name }};
+        root {{ document_root }};
+
+        index index.html index.htm;
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
+
+        # Log configuration
+        access_log {{ access_log }};
+        error_log {{ error_log }};
+
+        # Proxy configuration (example)
+        {% if enable_proxy %}
+        location /api/ {
+            proxy_pass http://{{ proxy_backend }};
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+        {% endif %}
+
+        # Static files
+        location /static/ {
+            alias {{ static_files }};
+        }
+    }
+}

@@ -1,0 +1,10 @@
+hostname: node6
+disk_partition: /dev/tty
+timezone: Europe/Berlin
+ntp_server: de.pool.ntp.org
+additional_packages:
+  - apache2
+  - unzip
+services_to_enable:
+  - ssh
+  - apache2

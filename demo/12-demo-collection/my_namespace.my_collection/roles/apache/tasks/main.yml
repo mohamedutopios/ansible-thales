@@ -1,0 +1,2 @@
+- name: Inclure les tâches d'installation
+  include_tasks: install.yml

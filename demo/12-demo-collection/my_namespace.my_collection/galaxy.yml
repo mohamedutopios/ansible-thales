@@ -1,0 +1,9 @@
+namespace: my_namespace
+name: my_collection
+version: 1.0.0
+readme: README.md
+authors:
+  - "Votre Nom <votre.email@example.com>"
+description: "Une collection Ansible pour installer et configurer Apache."
+license: MIT
+dependencies: {}

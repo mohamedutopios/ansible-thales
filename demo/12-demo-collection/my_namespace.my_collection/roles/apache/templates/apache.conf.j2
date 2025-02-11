@@ -1,0 +1,5 @@
+<VirtualHost *:{{ apache_port }}>
+    DocumentRoot "/var/www/html"
+    ErrorLog "/var/log/httpd/error.log"
+    CustomLog "/var/log/httpd/access.log" common
+</VirtualHost>

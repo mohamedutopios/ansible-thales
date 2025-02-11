@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>demo-inventory.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///Users/mohamedaijjou/Documents/thales/R%3A%5C2.Travail%5C1.Enseignement%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css"><link rel="stylesheet" href="file:///Users/mohamedaijjou/Documents/thales/D%3A%5Crdaros%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css">
+</head>
+
+<body>
+    <h2 id="inventaire"><strong>Inventaire</strong></h2>
+<p>Voici un exemple de fichier <code>inventory.ini</code> basé sur votre structure :</p>
+<pre class="hljs"><code><div><span class="hljs-section">[ansible]</span>
+ansible ansible_host=192.168.60.10 ansible_port=22 ansible_user=root ansible_private_key_file=~/.ssh/id_rsa
+
+<span class="hljs-section">[nodes]</span>
+node1 ansible_host=192.168.60.11 ansible_port=22 ansible_user=root ansible_private_key_file=~/.ssh/id_rsa
+node2 ansible_host=192.168.60.12 ansible_port=22 ansible_user=root ansible_private_key_file=~/.ssh/id_rsa
+node3 ansible_host=192.168.60.13 ansible_port=22 ansible_user=root ansible_private_key_file=~/.ssh/id_rsa
+
+<span class="hljs-section">[web]</span>
+node1
+node2
+
+<span class="hljs-section">[db]</span>
+node3
+
+<span class="hljs-section">[all_nodes:children]</span>
+web
+db
+
+<span class="hljs-section">[web:vars]</span>
+<span class="hljs-attr">ansible_user</span>=root
+<span class="hljs-attr">ansible_port</span>=<span class="hljs-number">22</span>
+<span class="hljs-attr">ansible_private_key_file</span>=~/.ssh/id_rsa
+
+<span class="hljs-section">[db:vars]</span>
+<span class="hljs-attr">ansible_user</span>=root
+<span class="hljs-attr">ansible_port</span>=<span class="hljs-number">22</span>
+<span class="hljs-attr">ansible_private_key_file</span>=~/.ssh/id_rsa
+</div></code></pre>
+<hr>
+<h2 id="1-tester-la-connectivit%C3%A9-de-linventaire"><strong>1. Tester la Connectivité de l'Inventaire</strong></h2>
+<h3 id="commande">Commande :</h3>
+<pre class="hljs"><code><div>ansible all -i inventory.ini -m ping
+</div></code></pre>
+<h3 id="r%C3%A9sultat-attendu">Résultat attendu :</h3>
+<pre class="hljs"><code><div><span class="hljs-string">node1</span> <span class="hljs-string">|</span> <span class="hljs-string">SUCCESS</span> <span class="hljs-string">=&gt;</span> <span class="hljs-string">{"changed":</span> <span class="hljs-literal">false</span><span class="hljs-string">,</span> <span class="hljs-attr">"ping":</span> <span class="hljs-string">"pong"</span><span class="hljs-string">}</span>
+<span class="hljs-string">node2</span> <span class="hljs-string">|</span> <span class="hljs-string">SUCCESS</span> <span class="hljs-string">=&gt;</span> <span class="hljs-string">{"changed":</span> <span class="hljs-literal">false</span><span class="hljs-string">,</span> <span class="hljs-attr">"ping":</span> <span class="hljs-string">"pong"</span><span class="hljs-string">}</span>
+<span class="hljs-string">node3</span> <span class="hljs-string">|</span> <span class="hljs-string">SUCCESS</span> <span class="hljs-string">=&gt;</span> <span class="hljs-string">{"changed":</span> <span class="hljs-literal">false</span><span class="hljs-string">,</span> <span class="hljs-attr">"ping":</span> <span class="hljs-string">"pong"</span><span class="hljs-string">}</span>
+<span class="hljs-string">ansible</span> <span class="hljs-string">|</span> <span class="hljs-string">SUCCESS</span> <span class="hljs-string">=&gt;</span> <span class="hljs-string">{"changed":</span> <span class="hljs-literal">false</span><span class="hljs-string">,</span> <span class="hljs-attr">"ping":</span> <span class="hljs-string">"pong"</span><span class="hljs-string">}</span>
+</div></code></pre>
+<hr>
+<h2 id="2-ex%C3%A9cuter-une-commande-sur-tous-les-n%C5%93uds"><strong>2. Exécuter une Commande sur Tous les Nœuds</strong></h2>
+<h3 id="commande">Commande :</h3>
+<pre class="hljs"><code><div>ansible all_nodes -i inventory.ini -m shell -a <span class="hljs-string">"uptime"</span>
+</div></code></pre>
+<h3 id="r%C3%A9sultat-attendu">Résultat attendu :</h3>
+<p>Chaque nœud retourne son temps d'activité.</p>
+<hr>
+<h2 id="3-tester-les-groupes"><strong>3. Tester les Groupes</strong></h2>
+<h3 id="a-tester-le-groupe-web">a. Tester le Groupe <code>web</code></h3>
+<pre class="hljs"><code><div>ansible web -i inventory.ini -m ping
+</div></code></pre>
+<h3 id="b-tester-le-groupe-db">b. Tester le Groupe <code>db</code></h3>
+<pre class="hljs"><code><div>ansible db -i inventory.ini -m ping
+</div></code></pre>
+<hr>
+<h2 id="4-installer-un-logiciel-par-groupe"><strong>4. Installer un Logiciel par Groupe</strong></h2>
+<p>Installez <code>nginx</code> sur les nœuds du groupe <code>web</code>.</p>
+<h3 id="commande">Commande :</h3>
+<pre class="hljs"><code><div>ansible web -i inventory.ini -m apt -a <span class="hljs-string">"name=nginx state=present update_cache=true"</span> --become
+</div></code></pre>
+<h3 id="r%C3%A9sultat-attendu">Résultat attendu :</h3>
+<p><code>nginx</code> sera installé sur <code>node1</code> et <code>node2</code>.</p>
+<hr>
+<h2 id="5-d%C3%A9ployer-un-fichier-sur-tous-les-n%C5%93uds"><strong>5. Déployer un Fichier sur Tous les Nœuds</strong></h2>
+<p>Copiez un fichier <code>/etc/hosts</code> local vers tous les nœuds dans <code>/tmp/hosts_backup</code>.</p>
+<h3 id="commande">Commande :</h3>
+<pre class="hljs"><code><div>ansible all_nodes -i inventory.ini -m copy -a <span class="hljs-string">"src=/etc/hosts dest=/tmp/hosts_backup"</span>
+</div></code></pre>
+<hr>
+<h2 id="6-red%C3%A9marrer-un-service-sur-un-groupe"><strong>6. Redémarrer un Service sur un Groupe</strong></h2>
+<p>Redémarrez le service SSH sur les nœuds <code>db</code>.</p>
+<h3 id="commande">Commande :</h3>
+<pre class="hljs"><code><div>ansible db -i inventory.ini -m service -a <span class="hljs-string">"name=ssh state=restarted"</span>
+</div></code></pre>
+<hr>
+<h2 id="7-ex%C3%A9cuter-un-playbook-sur-tous-les-n%C5%93uds"><strong>7. Exécuter un Playbook sur Tous les Nœuds</strong></h2>
+<p>Créez un Playbook pour installer <code>nginx</code> sur le groupe <code>web</code> et <code>mysql</code> sur le groupe <code>db</code>.</p>
+<h3 id="fichier-playbookyml">Fichier <code>playbook.yml</code> :</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">---</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Configure</span> <span class="hljs-string">Web</span> <span class="hljs-string">Servers</span>
+  <span class="hljs-attr">hosts:</span> <span class="hljs-string">web</span>
+  <span class="hljs-attr">tasks:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">Nginx</span>
+      <span class="hljs-attr">apt:</span>
+        <span class="hljs-attr">name:</span> <span class="hljs-string">nginx</span>
+        <span class="hljs-attr">state:</span> <span class="hljs-string">present</span>
+        <span class="hljs-attr">update_cache:</span> <span class="hljs-literal">true</span>
+      <span class="hljs-attr">become:</span> <span class="hljs-literal">true</span>
+
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Configure</span> <span class="hljs-string">Database</span> <span class="hljs-string">Server</span>
+  <span class="hljs-attr">hosts:</span> <span class="hljs-string">db</span>
+  <span class="hljs-attr">tasks:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">MySQL</span>
+      <span class="hljs-attr">apt:</span>
+        <span class="hljs-attr">name:</span> <span class="hljs-string">mysql-server</span>
+        <span class="hljs-attr">state:</span> <span class="hljs-string">present</span>
+        <span class="hljs-attr">update_cache:</span> <span class="hljs-literal">true</span>
+      <span class="hljs-attr">become:</span> <span class="hljs-literal">true</span>
+</div></code></pre>
+<h3 id="commande-pour-ex%C3%A9cuter-le-playbook">Commande pour exécuter le Playbook :</h3>
+<pre class="hljs"><code><div>ansible-playbook -i inventory.ini playbook.yml
+</div></code></pre>
+<h3 id="r%C3%A9sultat-attendu">Résultat attendu :</h3>
+<ul>
+<li><code>nginx</code> sera installé sur les nœuds du groupe <code>web</code> (<code>node1</code>, <code>node2</code>).</li>
+<li><code>mysql-server</code> sera installé sur le nœud du groupe <code>db</code> (<code>node3</code>).</li>
+</ul>
+<hr>
+<h2 id="8-filtrer-les-commandes-avec-des-tags"><strong>8. Filtrer les Commandes avec des Tags</strong></h2>
+<p>Ajoutez des tags à un Playbook pour exécuter uniquement certaines parties.</p>
+<h3 id="playbook-avec-tags-playbookwithtagsyml">Playbook avec Tags (<code>playbook_with_tags.yml</code>) :</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">---</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Configure</span> <span class="hljs-string">Web</span> <span class="hljs-string">Servers</span>
+  <span class="hljs-attr">hosts:</span> <span class="hljs-string">web</span>
+  <span class="hljs-attr">tasks:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">Nginx</span>
+      <span class="hljs-attr">apt:</span>
+        <span class="hljs-attr">name:</span> <span class="hljs-string">nginx</span>
+        <span class="hljs-attr">state:</span> <span class="hljs-string">present</span>
+        <span class="hljs-attr">update_cache:</span> <span class="hljs-literal">true</span>
+      <span class="hljs-attr">become:</span> <span class="hljs-literal">true</span>
+      <span class="hljs-attr">tags:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">nginx</span>
+
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Configure</span> <span class="hljs-string">Database</span> <span class="hljs-string">Server</span>
+  <span class="hljs-attr">hosts:</span> <span class="hljs-string">db</span>
+  <span class="hljs-attr">tasks:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">MySQL</span>
+      <span class="hljs-attr">apt:</span>
+        <span class="hljs-attr">name:</span> <span class="hljs-string">mysql-server</span>
+        <span class="hljs-attr">state:</span> <span class="hljs-string">present</span>
+        <span class="hljs-attr">update_cache:</span> <span class="hljs-literal">true</span>
+      <span class="hljs-attr">become:</span> <span class="hljs-literal">true</span>
+      <span class="hljs-attr">tags:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">mysql</span>
+</div></code></pre>
+<h3 id="ex%C3%A9cuter-uniquement-les-t%C3%A2ches-li%C3%A9es-%C3%A0-nginx">Exécuter uniquement les tâches liées à <code>nginx</code> :</h3>
+<pre class="hljs"><code><div>ansible-playbook -i inventory.ini playbook_with_tags.yml --tags nginx
+</div></code></pre>
+<h3 id="ex%C3%A9cuter-uniquement-les-t%C3%A2ches-li%C3%A9es-%C3%A0-mysql">Exécuter uniquement les tâches liées à <code>mysql</code> :</h3>
+<pre class="hljs"><code><div>ansible-playbook -i inventory.ini playbook_with_tags.yml --tags mysql
+</div></code></pre>
+<hr>
+<h2 id="9-ex%C3%A9cuter-une-commande-sur-un-seul-n%C5%93ud"><strong>9. Exécuter une Commande sur un Seul Nœud</strong></h2>
+<p>Exécutez une commande sur un nœud spécifique (par exemple, <code>node1</code>).</p>
+<h3 id="commande">Commande :</h3>
+<pre class="hljs"><code><div>ansible node1 -i inventory.ini -m shell -a <span class="hljs-string">"hostname"</span>
+</div></code></pre>
+<h3 id="r%C3%A9sultat-attendu">Résultat attendu :</h3>
+<pre class="hljs"><code><div><span class="hljs-string">node1</span> <span class="hljs-string">|</span> <span class="hljs-string">SUCCESS</span> <span class="hljs-string">=&gt;</span> <span class="hljs-string">{</span>
+    <span class="hljs-attr">"changed":</span> <span class="hljs-literal">true</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">"stdout":</span> <span class="hljs-string">"node1"</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">"stderr":</span> <span class="hljs-string">""</span><span class="hljs-string">,</span>
+    <span class="hljs-attr">"rc":</span> <span class="hljs-number">0</span>
+<span class="hljs-string">}</span>
+</div></code></pre>
+<hr>
+<h2 id="10-afficher-des-informations-sur-tous-les-n%C5%93uds"><strong>10. Afficher des Informations sur Tous les Nœuds</strong></h2>
+<p>Utilisez le module <code>setup</code> pour collecter des faits sur tous les nœuds.</p>
+<h3 id="commande">Commande :</h3>
+<pre class="hljs"><code><div>ansible all_nodes -i inventory.ini -m setup
+</div></code></pre>
+<h3 id="r%C3%A9sultat-attendu">Résultat attendu :</h3>
+<p>Renvoie des informations détaillées (facter) pour chaque nœud, comme le système d'exploitation, la mémoire, le CPU, etc.</p>
+<hr>
+<h2 id="r%C3%A9capitulatif-des-commandes"><strong>Récapitulatif des Commandes</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Commande</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tester la connectivité (ping)</td>
+<td><code>ansible all -i inventory.ini -m ping</code></td>
+</tr>
+<tr>
+<td>Exécuter une commande sur tous</td>
+<td><code>ansible all_nodes -i inventory.ini -m shell -a &quot;uptime&quot;</code></td>
+</tr>
+<tr>
+<td>Installer <code>nginx</code> sur <code>web</code></td>
+<td><code>ansible web -i inventory.ini -m apt -a &quot;name=nginx state=present update_cache=true&quot; --become</code></td>
+</tr>
+<tr>
+<td>Copier un fichier</td>
+<td><code>ansible all_nodes -i inventory.ini -m copy -a &quot;src=/etc/hosts dest=/tmp/hosts_backup&quot;</code></td>
+</tr>
+<tr>
+<td>Redémarrer SSH sur <code>db</code></td>
+<td><code>ansible db -i inventory.ini -m service -a &quot;name=ssh state=restarted&quot;</code></td>
+</tr>
+<tr>
+<td>Exécuter un Playbook</td>
+<td><code>ansible-playbook -i inventory.ini playbook.yml</code></td>
+</tr>
+<tr>
+<td>Exécuter des tâches avec tags</td>
+<td><code>ansible-playbook -i inventory.ini playbook_with_tags.yml --tags nginx</code></td>
+</tr>
+<tr>
+<td>Collecter des informations</td>
+<td><code>ansible all_nodes -i inventory.ini -m setup</code></td>
+</tr>
+</tbody>
+</table>
+
+</body>
+
+</html>

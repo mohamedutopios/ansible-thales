@@ -1,0 +1,22 @@
+- name: Installer Apache
+  ansible.builtin.yum:
+    name: httpd
+    state: present
+
+- name: Copier le fichier de configuration Apache
+  ansible.builtin.template:
+    src: apache.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+    mode: 0644
+
+- name: Copier la page d'accueil
+  ansible.builtin.copy:
+    src: index.html
+    dest: /var/www/html/index.html
+    mode: 0644
+
+- name: Démarrer et activer Apache
+  ansible.builtin.service:
+    name: httpd
+    state: started
+    enabled: yes
